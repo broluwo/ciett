@@ -1,19 +1,28 @@
 var ciett = ciett || {};
 
 
-var getUserMedia = navigator.mediaDevices ?
-    navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices) :
-    function (c) {
-        return new Promise(function (f, r) {
-            navigator.webkitGetUserMedia(c, f, r);
-        });
-    };
+navigator.mediaDevices = navigator.mediaDevices || ((navigator.mozGetUserMedia || navigator.webkitGetUserMedia) ? {
+   getUserMedia: function(c) {
+     return new Promise(function(y, n) {
+       (navigator.mozGetUserMedia ||
+        navigator.webkitGetUserMedia).call(navigator, c, y, n);
+     });
+   }
+} : null);
+
+// var getUserMedia = navigator.mediaDevices ?
+//     navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices) :
+//     function (c) {
+//         return new Promise(function (f, r) {
+//             navigator.webkitGetUserMedia(c, f, r);
+//         });
+//     };
 
 ciett.aContext = null;
 ciett.recorder = null;
-navigator.getUserMedia = navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia;
+// navigator.getUserMedia = navigator.webkitGetUserMedia ||
+//     navigator.mozGetUserMedia ||
+//     navigator.msGetUserMedia;
 
 ciett.hasGetUserMedia_ = function() {
     ciett.userMedia_ = (navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -27,18 +36,21 @@ ciett.hasGetUserMedia_ = function() {
  */
 ciett.onAudioIconClick = function() {
     if (ciett.hasGetUserMedia_()) {
-	var mediaE = getUserMedia({audio: true});
-	/**{!MediaStream} stream - Audio Input */
-	mediaE.then(function(stream) {
-	    ciett.aContext = ciett.aContext || new AudioContext();
-	    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-	    console.log('Given audio capture access. Providing input to recorder.');
-	    ciett.recorder = ciett.recorder || new Recorder(ciett.aContext.createMediaStreamSource(stream));
-	    ciett.startRecording();
-	});
-	mediaE.catch(function(err) {
-	    console.error('Was not able to create audio stream.' + err);
-	});
+	if (!navigator.mediaDevices) {
+	    console.log("getUserMedia() not supported.");
+	    return;
+	}
+	navigator.mediaDevices.getUserMedia({video:false, audio: true})
+	    .then(function(stream) {
+		ciett.aContext = ciett.aContext || new AudioContext();
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+		console.log('Given audio capture access. Providing input to recorder.');
+		ciett.recorder = ciett.recorder || new Recorder(ciett.aContext.createMediaStreamSource(stream));
+		ciett.startRecording();
+	    })
+	    .catch(function(err) {
+		console.error('Was not able to create audio stream.' + err);
+	    });
     }
 };
 
