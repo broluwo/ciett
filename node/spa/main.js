@@ -60,7 +60,8 @@ ciett.stopRecording = function() {
 	ciett.recorder.stop();
 	console.log('Stopped Recording...');
 	
-	ciett.recorder.exportWAV(ciett.sendAudio);
+	//ciett.recorder.exportWAV(ciett.sendAudio);
+  document.getElementById('elmotothis').textContent = 'Yes, you can Elmo to this!';
     }
 };
 
