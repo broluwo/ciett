@@ -70,7 +70,7 @@ ciett.stopRecording = function() {
  *@param{!Blob} blob - Holds the wav data. 
  */
 ciett.sendAudio = function(blob){
-    if (undefined !== ciet.recorder) {
+    if (undefined !== ciett.recorder) {
 	var xhr = new XMLHttpRequest();
 	var form = new FormData();
 	form.append('audio', blob,'audio.wav');
