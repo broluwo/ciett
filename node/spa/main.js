@@ -27,18 +27,17 @@ ciett.hasGetUserMedia_ = function() {
  */
 ciett.onAudioIconClick = function() {
     if (ciett.hasGetUserMedia_()) {
-	var mediaE = getUserMedia({audio: true});
-	/**{!MediaStream} stream - Audio Input */
-	mediaE.then(function(stream) {
-	    ciett.aContext = ciett.aContext || new AudioContext();
-	    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-	    console.log('Given audio capture access. Providing input to recorder.');
-	    ciett.recorder = ciett.recorder || new Recorder(ciett.aContext.createMediaStreamSource(stream));
-	    ciett.startRecording();
-	});
-	mediaE.catch(function(err) {
-	    console.error('Was not able to create audio stream.' + err);
-	});
+	getUserMedia({audio: true})
+	    .then(function(stream) {
+		ciett.aContext = ciett.aContext || new AudioContext();
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+		console.log('Given audio capture access. Providing input to recorder.');
+		ciett.recorder = ciett.recorder || new Recorder(ciett.aContext.createMediaStreamSource(stream));
+		ciett.startRecording();
+	    })
+	    .catch(function(err) {
+		console.error('Was not able to create audio stream.' + err);
+	    });
     }
 };
 
@@ -74,7 +73,7 @@ ciett.sendAudio = function(blob){
 	var xhr = new XMLHttpRequest();
 	var form = new FormData();
 	form.append('audio', blob,'audio.wav');
-	request.open('POST','/process',true);
-	request.send(form);
+	xhr.open('POST','/process',true);
+	xhr.send(form);
     }
 };
