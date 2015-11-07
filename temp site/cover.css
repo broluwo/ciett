@@ -1,0 +1,261 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #DA2525;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+/*
+* Button
+*/
+.btn-nose { 
+  color: #FFFFFF; 
+  background-color: #E28721; 
+  border-color: #000000; 
+} 
+ 
+.btn-nose:hover, 
+.btn-nose:focus, 
+.btn-nose:active, 
+.btn-nose.active, 
+.open .dropdown-toggle.btn-nose { 
+  color: #FFFFFF; 
+  background-color: #A1641E; 
+  border-color: #000000; 
+} 
+ 
+.btn-nose:active, 
+.btn-nose.active, 
+.open .dropdown-toggle.btn-nose { 
+  background-image: none; 
+} 
+ 
+.btn-nose.disabled, 
+.btn-nose[disabled], 
+fieldset[disabled] .btn-nose, 
+.btn-nose.disabled:hover, 
+.btn-nose[disabled]:hover, 
+fieldset[disabled] .btn-nose:hover, 
+.btn-nose.disabled:focus, 
+.btn-nose[disabled]:focus, 
+fieldset[disabled] .btn-nose:focus, 
+.btn-nose.disabled:active, 
+.btn-nose[disabled]:active, 
+fieldset[disabled] .btn-nose:active, 
+.btn-nose.disabled.active, 
+.btn-nose[disabled].active, 
+fieldset[disabled] .btn-nose.active { 
+  background-color: #E28721; 
+  border-color: #000000; 
+} 
+ 
+.btn-nose .badge { 
+  color: #E28721; 
+  background-color: #FFFFFF; 
+}
+
+.btn-eye { 
+  color: #000000; 
+  background-color: #FFFFFF; 
+  border-color: #000000; 
+} 
+ 
+.btn-eye:hover, 
+.btn-eye:focus, 
+.btn-eye:active, 
+.btn-eye.active, 
+.open .dropdown-toggle.btn-eye { 
+  color: #000000; 
+  background-color: #FFFFFF; 
+  border-color: #000000; 
+} 
+ 
+.btn-eye:active, 
+.btn-eye.active, 
+.open .dropdown-toggle.btn-eye { 
+  background-image: none; 
+} 
+ 
+.btn-eye.disabled, 
+.btn-eye[disabled], 
+fieldset[disabled] .btn-eye, 
+.btn-eye.disabled:hover, 
+.btn-eye[disabled]:hover, 
+fieldset[disabled] .btn-eye:hover, 
+.btn-eye.disabled:focus, 
+.btn-eye[disabled]:focus, 
+fieldset[disabled] .btn-eye:focus, 
+.btn-eye.disabled:active, 
+.btn-eye[disabled]:active, 
+fieldset[disabled] .btn-eye:active, 
+.btn-eye.disabled.active, 
+.btn-eye[disabled].active, 
+fieldset[disabled] .btn-eye.active { 
+  background-color: #FFFFFF; 
+  border-color: #000000; 
+} 
+ 
+.btn-eye .badge { 
+  color: #FFFFFF; 
+  background-color: #000000; 
+}
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 100px 30px;
+  font-weight: bold;
+}
+.cover .btn-lg2 {
+  padding: 100px 100px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    padding-top: 10px;
+    vertical-align: top;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
+}
