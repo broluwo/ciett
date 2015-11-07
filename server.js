@@ -6,16 +6,17 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+/*
 // MongoDB stuff
-mongoose.connect('mongodb://127.0.0.1:27017/uwO3mypu');
+mongoose.connect('mongodb://localhost:27017/test');
 var db = mongoose.connection;
 
-db.on('error', console.err.bind(console, 'connection error:'));
+db.on('error', console.log('Database connection error'));
 db.once('open', function (callback) {
   console.log('Mongo database opened');
 });
 
-/* var Sound = mongoose.model('Sound', {
+var Sound = mongoose.model('Sound', {
     data: Buffer,
     bpm : {type: Number, min: 0, max: 300},
     contentType: String
