@@ -1,11 +1,16 @@
 var ciett = ciett || {};
 
-ciett.aContext = null;
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ciett.aContext = ciett.aContext || new AudioContext();
 ciett.recorder = null;
+navigator.getUserMedia = navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia;
 
 ciett.hasGetUserMedia_ = function() {
-   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+   ciett.userMedia_ = (navigator.getUserMedia || navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
+   return ciett.userMedia_ !== undefined;
 };
 
 /**
@@ -13,8 +18,6 @@ ciett.hasGetUserMedia_ = function() {
  * then start recording.
  */
 ciett.onAudioIconClick = function() {
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  ciett.aContext = client.aContext || new AudioContext();
   if (ciett.hasGetUserMedia_()) {
     navigator.getUserMedia({audio: true}, function(stream) {
       console.log('Given audio capture access. Providing input to recorder.');
