@@ -15,11 +15,12 @@ db.once('open', function (callback) {
   console.log('Mongo database opened');
 });
 
-var Sound = mongoose.model('Sound', {
+/* var Sound = mongoose.model('Sound', {
     data: Buffer,
     bpm : {type: Number, min: 0, max: 300},
     contentType: String
 });
+*/
 
 // Express stuff
 app.use(express.static(__dirname + '/spa'));                 // set the static files location /public/img will be /img for users
