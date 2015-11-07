@@ -1,6 +1,14 @@
 var ciett = ciett || {};
 
 
+var getUserMedia = navigator.mediaDevices ?
+    navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices) :
+    function (c) {
+        return new Promise(function (f, r) {
+            navigator.webkitGetUserMedia(c, f, r);
+        });
+    };
+
 ciett.aContext = null;
 ciett.recorder = null;
 navigator.getUserMedia = navigator.webkitGetUserMedia ||
@@ -19,7 +27,7 @@ ciett.hasGetUserMedia_ = function() {
  */
 ciett.onAudioIconClick = function() {
     if (ciett.hasGetUserMedia_()) {
-	var mediaE = navigator.mediaDevices.getUserMedia({audio: true});
+	var mediaE = getUserMedia({audio: true});
 	/**{!MediaStream} stream - Audio Input */
 	mediaE.then(function(stream) {
 	    ciett.aContext = ciett.aContext || new AudioContext();
