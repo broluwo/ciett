@@ -60,7 +60,6 @@ ciett.stopRecording = function() {
 	console.log('Stopped Recording...');
 	
 	//ciett.recorder.exportWAV(ciett.sendAudio);
-  document.getElementById('elmotothis').textContent = 'Yes, you can Elmo to this!';
     }
 };
 
@@ -80,12 +79,12 @@ ciett.sendAudio = function(blob){
 };
 
 ciett.convertToMono = function(input) {
-  var splitter = audioContext.createChannelSplitter(2);
-  var merger = audioContext.createChannelMerger(2);
+  var splitter = ciett.aContext.createChannelSplitter(2);
+  var merger = ciett.aContext.createChannelMerger(2);
 
-  input.connect( splitter );
-  splitter.connect( merger, 0, 0 );
-  splitter.connect( merger, 0, 1 );
+  input.connect(splitter);
+  splitter.connect(merger, 0, 0);
+  splitter.connect(merger, 0, 1);
   return merger;
 }
 
