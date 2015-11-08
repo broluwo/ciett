@@ -1,11 +1,10 @@
 var ciett = ciett || {};
 
-
 var getUserMedia = navigator.mediaDevices ?
     navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices) :
     function (c) {
         return new Promise(function (f, r) {
-            navigator.webkitGetUserMedia(c, f, r);
+            navigator.getUserMedia(c, f, r);
         });
     };
 
@@ -59,7 +58,7 @@ ciett.stopRecording = function() {
 	ciett.recorder.stop();
 	console.log('Stopped Recording...');
 	
-	//ciett.recorder.exportWAV(ciett.sendAudio);
+	ciett.recorder.exportWAV(ciett.sendAudio);
     }
 };
 
@@ -72,9 +71,10 @@ ciett.sendAudio = function(blob){
     if (undefined !== ciett.recorder) {
 	var xhr = new XMLHttpRequest();
 	var form = new FormData();
-	form.append('audio', blob,'audio.wav');
-	xhr.open('POST','/process',true);
+	form.append('audio', blob);
+	xhr.open('POST', '/process', true);
 	xhr.send(form);
+    ciett.recorder.clear();
     }
 };
 
@@ -85,6 +85,7 @@ ciett.convertToMono = function(input) {
   input.connect(splitter);
   splitter.connect(merger, 0, 0);
   splitter.connect(merger, 0, 1);
+
   return merger;
 }
 
