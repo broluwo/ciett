@@ -46,7 +46,7 @@
         </a>
 	    </p>
       <p style="color: #000;">
-        <input type="text" id="bpm" value="110">
+        <input type="text" id="bpm" value="76">
         <button onclick="setBpm()">bpm</button>
        </p>
       	    <div class="row">
@@ -56,9 +56,9 @@
           </video>
           <script type="text/javascript">
           function setBpm() {
-            var delta = parseFloat(document.getElementById("bpm").value)/110.0;
+            var delta = parseFloat(document.getElementById("bpm").value)/76.0;
             if(delta < 1.0){
-              delta = -110/parseFloat(document.getElementById("bpm").value);
+              delta = -76/parseFloat(document.getElementById("bpm").value);
             }
             /* play video twice as fast */
             document.getElementById("elmo").playbackRate  = delta;
