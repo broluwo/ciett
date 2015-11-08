@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Can I Elmo To it?</title>
+    <title>Can I Elmo To This?</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,13 +35,37 @@
 	  
           <div class="inner cover">
 	    <div class="row">
-	      <div class="col-xs-4 "><a href="javascript:;" onclick="ciett.onAudioIconClick()" class="btn btn-lg2 btn-eye"> Start Recording</a></div>
+	      <div class="col-xs-4"><a href="javascript:;" onclick="ciett.onAudioIconClick()" class="btn btn-lg2 btn-block btn-eye"> 
+            <span class="glyphicon glyphicon-record i" aria-hidden="true"></span>Record</a></div>
 	      <div class="col-xs-4"></div>
-	      <div class="col-xs-4"><a href="javascript:;" onclick="ciett.stopRecording()"  class="btn btn-lg2 btn-eye"> Stop Recording</a></div>
+	      <div class="col-xs-4"><a href="javascript:;" onclick="ciett.stopRecording()"  class="btn btn-lg2 btn-block btn-eye">Stop<span class="glyphicon glyphicon-stop i" aria-hidden="true"></span></a></div>
 	    </div>
 	    <p class="lead">
-	      <a href="#" class="btn btn-lg btn-nose">Can I Elmo To it?</a>
+	      <a href="#" class="btn btn-lg btn-nose">Can I Elmo To This?
+         
+        </a>
 	    </p>
+      <p style="color: #000;">
+        <input type="text" id="bpm" value="110">
+        <button onclick="setBpm()">bpm</button>
+       </p>
+      	    <div class="row">
+             <div class="col-xs-12"><video id="elmo" width="100%" autoplay loop>
+            <source src="elmoDance.webm" type="video/webm">
+            Your browser does not support the video tag.
+          </video>
+          <script type="text/javascript">
+          function setBpm() {
+            var delta = parseFloat(document.getElementById("bpm").value)/110.0;
+            if(delta < 1.0){
+              delta = -110/parseFloat(document.getElementById("bpm").value);
+            }
+            /* play video twice as fast */
+            document.getElementById("elmo").playbackRate  = delta;
+          }
+          </script>
+          </div>
+      	    </div>
           </div>
 	  
 	  
